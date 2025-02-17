@@ -12,7 +12,7 @@ npx create-react-router@latest --template sjparsons/react-router-lambda-template
 
 > Sets up react-router v7 with deployment to AWS CloudFront, Lambda and S3 using terraform.
 
-This is a great place to start with a React Router app host on AWS.
+This is a great place to start with a React Router app hosted on AWS.
 
 ```
 npx create-react-router@latest --template sjparsons/react-router-lambda-templates/basic-lambda
