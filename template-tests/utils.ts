@@ -15,7 +15,7 @@ import { ChildProcess } from "child_process";
 
 const __filename = fileURLToPath(import.meta.url);
 const ROOT = Path.join(__filename, "../..");
-const TMP = Path.join(ROOT, ".tests/tmp");
+const TMP = Path.join(ROOT, "template-tests/tmp");
 
 declare module "@playwright/test" {
   interface Page {
@@ -52,7 +52,7 @@ export const testTemplate = (template: string) =>
       await fs.mkdirp(cwd);
 
       const templatePath = Path.join(ROOT, template);
-      const nodeModulesPath = Path.join(templatePath, "node_modules");
+      const nodeModulesPath = Path.join(ROOT, "node_modules");
       fs.copySync(templatePath, cwd, {
         errorOnExist: true,
         filter: (src) => Path.normalize(src) !== nodeModulesPath,
@@ -123,6 +123,7 @@ export function matchLine(
   return new Promise<string>(async (resolve, reject) => {
     setTimeout(() => reject(timeout), options.timeout ?? 10_000);
     stream.on("data", (data) => {
+      console.log("data", data.toString());
       const line = data.toString();
       const matches = line.match(pattern);
       if (matches) resolve(matches[1]);
@@ -135,9 +136,6 @@ const urlMatch = ({ prefix }: { prefix: RegExp }) =>
 export const urlRegex = {
   viteDev: urlMatch({ prefix: /Local:\s+/ }),
   reactRouterServe: urlMatch({ prefix: /\[react-router-serve\]\s+/ }),
-  custom: urlMatch({ prefix: /Server is running on / }),
-  netlify: urlMatch({ prefix: /◈ Server now ready on / }),
-  wrangler: urlMatch({ prefix: /Ready on / }),
 };
 
 // `vite.createServer` always tries to use the same HMR port

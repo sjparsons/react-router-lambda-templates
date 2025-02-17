@@ -16,9 +16,9 @@ test("typecheck", async ({ $ }) => {
 
 test("dev", async ({ page, $ }) => {
   const port = await getPort();
-  const dev = $(`npm run dev`, { env: { PORT: String(port) } });
+  const dev = $(`npm run dev -- --port ${String(port)}`);
 
-  const url = await matchLine(dev.stdout, urlRegex.custom);
+  const url = await matchLine(dev.stdout, urlRegex.viteDev);
   await workflow({ page, url });
   expect(withoutHmrPortError(dev.buffer.stderr)).toBe("");
 });
