@@ -7,3 +7,13 @@ You can quickly create a new React Router application from any of these template
 ```
 npx create-react-router@latest --template sjparsons/react-router-lambda-templates/<template-name>
 ```
+
+## Basic Lambda tempalte
+
+> Sets up react-router v7 with deployment to AWS CloudFront, Lambda and S3 using terraform.
+
+This is a great place to start with a React Router app host on AWS.
+
+```
+npx create-react-router@latest --template sjparsons/react-router-lambda-templates/basic-lambda
+```
