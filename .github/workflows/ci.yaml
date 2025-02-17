@@ -23,17 +23,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: 22
       - name: Install dependencies
         run: npm install
       - name: Install Playwright Browsers
-        working-directory: .tests
+        working-directory: template-tests
         run: npx playwright install --with-deps ${{ matrix.browser }}
       - name: Run Playwright tests
-        working-directory: .tests
-        run: npm test -- --project=${{ matrix.browser }}
+        run: npm -w template-tests test -- --project=${{ matrix.browser }}
