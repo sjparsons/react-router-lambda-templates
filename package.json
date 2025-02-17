@@ -1,0 +1,9 @@
+{
+  "name": "react-router-lambda-templates",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "basic-lambda",
+    "template-tests"
+  ]
+}
