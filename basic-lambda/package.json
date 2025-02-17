@@ -6,7 +6,6 @@
     "build": "react-router build && node lambda/prepare.js",
     "deploy": "cd terraform && terraform init && terraform apply",
     "dev": "react-router dev",
-    "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
